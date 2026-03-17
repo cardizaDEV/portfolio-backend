@@ -9,6 +9,7 @@ INSERT INTO experience_category (name) VALUES
 
 INSERT INTO organization (name) VALUES
 ('Imatia'),
+('CARDIZA.DEV'),
 ('Cluster TIC Galicia y Xunta de Galicia'),
 ('CPR Afundación'),
 ('IES Campo de San Alberto'),
@@ -41,11 +42,13 @@ INSERT INTO technology (name) VALUES
 ('Jira'),
 ('Jenkins'),
 ('ActiveMq'),
+('Github Actions'),
 ('OpenAPI Swagger'),
 ('Spring Security'),
 ('Lombok'),
 ('AWS'),
 ('S3'),
+('Caffeine Cache'),
 ('Keycloak'),
 ('ArgoCD'),
 ('Grafana'),
@@ -168,6 +171,19 @@ INSERT INTO experience (
     '2023-01-01'
 );
 
+INSERT INTO experience (
+    title, organization_id, status_id, category_id,
+    description, start_date, end_date
+) VALUES (
+    'CARDIZA.DEV',
+    (SELECT id FROM organization WHERE name = 'CARDIZA.DEV'),
+    (SELECT id FROM experience_status WHERE name = 'IN_PROGRESS'),
+    (SELECT id FROM experience_category WHERE name = 'PROJECT'),
+    'Research and development of a full stack portfolio application',
+    '2026-03-01',
+    null
+);
+
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id
 FROM experience e, technology t
@@ -215,4 +231,13 @@ SELECT e.id, t.id
 FROM experience e, technology t
 WHERE e.title = 'CROSS-PLATFORM APPLICATION DEVELOPMENT' AND t.name IN (
     'Java', 'HTML', 'CSS', 'T-SQL', 'Git', 'Maven', 'Kotlin'
+);
+
+INSERT INTO experience_technology (experience_id, technology_id)
+SELECT e.id, t.id
+FROM experience e, technology t
+WHERE e.title = 'CARDIZA.DEV' AND t.name IN (
+    'Java', 'HTML', 'TypeScript', 'Spring Boot', 'JPA', 'MapStruct', 'PostgreSQL', 'Angular', 'TailwindCSS', 'Git',
+    'Docker', 'JUnit', 'Mockito', 'Github Actions', 'OpenAPI Swagger', 'Lombok', 'Caffeine Cache', 'Grafana', 'Flyway',
+    'Maven', 'Node.js', 'npm', 'Firebase'
 );

@@ -1,13 +1,13 @@
 CREATE TABLE organization (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
-    icon_base64 TEXT
+    icon_url TEXT
 );
 
 CREATE TABLE technology (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
-    icon_base64 TEXT
+    icon_url TEXT
 );
 
 CREATE TABLE experience_status (

@@ -24,7 +24,7 @@ public class Organization {
     private String name;
 
     @Column(columnDefinition = "TEXT")
-    private String iconBase64;
+    private String icon_url;
 
     @OneToMany(mappedBy = ORGANIZATION)
     private List<Experience> experiences;

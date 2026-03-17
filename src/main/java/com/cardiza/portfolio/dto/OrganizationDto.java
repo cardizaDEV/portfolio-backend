@@ -11,5 +11,5 @@ public class OrganizationDto {
 
     private long id;
     private String name;
-    private String iconBase64;
+    private String icon_url;
 }
