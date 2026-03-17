@@ -7,6 +7,7 @@ import com.cardiza.portfolio.repository.CommentRepository;
 import com.cardiza.portfolio.service.CommentService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
     @Override
+    @Cacheable("comments")
     public List<CommentDto> getAllComments() {
         return this.commentRepository.findAll()
                 .stream()
@@ -30,6 +32,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Cacheable(value = "comments", key = "#page + '-' + #size + '-' + #sortBy")
     public Page<CommentDto> getAllCommentsPaginated(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Comment> commentPage = commentRepository.findAll(pageable);

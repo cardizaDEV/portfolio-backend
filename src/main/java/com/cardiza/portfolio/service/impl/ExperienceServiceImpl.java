@@ -32,6 +32,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     @Override
+    @Cacheable(value = "experiences", key = "#page + '-' + #size + '-' + #sortBy")
     public Page<ExperienceDto> getAllExperiencesPaginated(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Experience> experiencePage = experienceRepository.findAll(pageable);

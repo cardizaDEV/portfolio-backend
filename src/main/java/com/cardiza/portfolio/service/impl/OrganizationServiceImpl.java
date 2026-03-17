@@ -32,6 +32,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
+    @Cacheable(value = "organizations", key = "#page + '-' + #size + '-' + #sortBy")
     public Page<OrganizationDto> getAllOrganizationsPaginated(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Organization> orgPage = organizationRepository.findAll(pageable);

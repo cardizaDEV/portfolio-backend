@@ -32,6 +32,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
+    @Cacheable(value = "technologies", key = "#page + '-' + #size + '-' + #sortBy")
     public Page<TechnologyDto> getAllTechnologiesPaginated(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Technology> techPage = technologyRepository.findAll(pageable);

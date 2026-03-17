@@ -58,6 +58,7 @@ INSERT INTO technology (name) VALUES
 ('Gradle'),
 ('Node.js'),
 ('npm'),
+('Figma'),
 ('Kotlin'),
 ('JasperReports'),
 ('Firebase');
@@ -189,7 +190,7 @@ WHERE e.title = 'FULL STACK DEVELOPER - 2' AND t.name IN (
     'Java', 'HTML', 'SCSS', 'TypeScript', 'Spring Boot', 'JPA', 'MapStruct', 'PostgreSQL', 'MongoDB', 'Angular', 'Git',
     'Postman', 'Docker', 'JUnit', 'Mockito', 'Springfox Swagger', 'Jira', 'Jenkins', 'ActiveMq', 'OpenAPI Swagger',
     'Spring Security', 'Lombok', 'AWS', 'S3', 'ArgoCD', 'Grafana', 'Ontimize Web', 'Ontimize Boot',
-    'D3.js', 'JasperReports', 'Liquibase', 'Maven', 'Node.js', 'npm'
+    'D3.js', 'JasperReports', 'Liquibase', 'Maven', 'Node.js', 'npm', 'Figma'
 );
 
 INSERT INTO experience_technology (experience_id, technology_id)
@@ -198,7 +199,7 @@ FROM experience e, technology t
 WHERE e.title = 'FULL STACK DEVELOPER - 3' AND t.name IN (
     'Java', 'HTML', 'CSS', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Angular', 'Git', 'Postman', 'Docker', 'JUnit',
     'Mockito', 'Jira', 'Lombok', 'AWS', 'S3', 'ArgoCD', 'Grafana', 'Ontimize Web', 'Ontimize Boot', 'JasperReports',
-    'Flyway', 'Maven', 'Node.js', 'npm'
+    'Flyway', 'Maven', 'Node.js', 'npm', 'Figma'
 );
 
 INSERT INTO experience_technology (experience_id, technology_id)
