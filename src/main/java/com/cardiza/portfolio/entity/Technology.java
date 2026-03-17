@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 import static com.cardiza.portfolio.config.ApplicationValues.DEFAULT_LONG_STRING_LENGTH;
+import static com.cardiza.portfolio.config.EntityNamings.TECHNOLOGIES;
 import static com.cardiza.portfolio.config.EntityNamings.TECHNOLOGY;
 
 @Entity
@@ -26,6 +27,6 @@ public class Technology {
     @Column(columnDefinition = "TEXT")
     private String iconBase64;
 
-    @ManyToMany(mappedBy = TECHNOLOGY)
+    @ManyToMany(mappedBy = TECHNOLOGIES)
     private Set<Experience> experiences;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import static com.cardiza.portfolio.config.ApplicationValues.DEFAULT_STRING_LENGTH;
+import static com.cardiza.portfolio.config.EntityNamings.CATEGORY;
 import static com.cardiza.portfolio.config.EntityNamings.EXPERIENCE_CATEGORY;
 
 @Entity
@@ -24,6 +25,6 @@ public class ExperienceCategory {
     @Column(unique = true, nullable = false, length = DEFAULT_STRING_LENGTH)
     private String name;
 
-    @OneToMany(mappedBy = EXPERIENCE_CATEGORY)
+    @OneToMany(mappedBy = CATEGORY)
     private List<Experience> experiences;
 }
