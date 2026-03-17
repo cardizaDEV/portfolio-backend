@@ -1,0 +1,71 @@
+package com.cardiza.portfolio;
+
+import com.cardiza.portfolio.controller.TechnologyController;
+import com.cardiza.portfolio.dto.TechnologyDto;
+import com.cardiza.portfolio.service.TechnologyService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static com.cardiza.portfolio.config.ControllerNamings.ALL;
+import static com.cardiza.portfolio.config.ControllerNamings.TECHNOLOGY;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(TechnologyController.class)
+class TechnologyControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private TechnologyService technologyService;
+
+    private List<TechnologyDto> techList;
+
+    @BeforeEach
+    void setUp() {
+        techList = IntStream.rangeClosed(1, 15)
+                .mapToObj(i -> new TechnologyDto(
+                        i,
+                        "Technology " + i,
+                        "iconBase64_" + i
+                ))
+                .toList();
+    }
+
+    @Test
+    void getAllTechnologies() throws Exception {
+        Mockito.when(technologyService.getAllTechnologies()).thenReturn(techList);
+
+        mockMvc.perform(get(TECHNOLOGY + ALL))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(techList.size()));
+    }
+
+    @Test
+    void getAllTechnologiesPaginated() throws Exception {
+        List<TechnologyDto> pageContent = techList.subList(0, 10);
+        Page<TechnologyDto> page = new PageImpl<>(pageContent, PageRequest.of(0, 10), techList.size());
+
+        Mockito.when(technologyService.getAllTechnologiesPaginated(anyInt(), anyInt(), anyString()))
+                .thenReturn(page);
+
+        mockMvc.perform(get(TECHNOLOGY))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(pageContent.size()));
+    }
+}

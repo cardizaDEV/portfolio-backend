@@ -2,12 +2,14 @@ package com.cardiza.portfolio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-public class Application {
+@EnableCaching
+public class PortfolioApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(PortfolioApplication.class, args);
     }
 
 }

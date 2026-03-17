@@ -1,0 +1,24 @@
+package com.cardiza.portfolio.config;
+
+public class EntityNamings {
+
+    public static final String USER_ID = "user_id";
+
+    public static final String EXPERIENCE = "experience";
+    public static final String EXPERIENCE_ID = "experience_id";
+
+    public static final String COMMENT = "comment";
+    public static final String COMMENT_ID = "comment_id";
+
+    public static final String EXPERIENCE_STATUS = "experience_status";
+    public static final String STATUS_ID = "status_id";
+
+    public static final String EXPERIENCE_CATEGORY = "experience_category";
+    public static final String CATEGORY_ID = "category_id";
+
+    public static final String ORGANIZATION = "organization";
+    public static final String ORGANIZATION_ID = "organization_id";
+
+    public static final String TECHNOLOGY = "technology";
+    public static final String TECHNOLOGY_ID = "technology_id";
+}
