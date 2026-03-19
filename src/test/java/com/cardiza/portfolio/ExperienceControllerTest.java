@@ -2,6 +2,9 @@ package com.cardiza.portfolio;
 
 import com.cardiza.portfolio.controller.ExperienceController;
 import com.cardiza.portfolio.dto.ExperienceDto;
+import com.cardiza.portfolio.dto.OrganizationDto;
+import com.cardiza.portfolio.dto.TechnologyCategoryDto;
+import com.cardiza.portfolio.dto.TechnologyDto;
 import com.cardiza.portfolio.service.ExperienceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import static com.cardiza.portfolio.config.ControllerNamings.ALL;
@@ -43,12 +47,17 @@ class ExperienceControllerTest {
                 .mapToObj(i -> new ExperienceDto(
                         i,
                         "Experience " + i,
-                        i % 5 + 1,
-                        i % 3 + 1,
-                        i % 4 + 1,
+                        new OrganizationDto(i % 5 + 1, "Organization " + (i % 5 + 1), null),
+                        i % 3 == 0 ? "active" : "inactive",
+                        i % 4 == 0 ? "work" : "education",
                         "Description for experience " + i,
                         LocalDate.now().minusMonths(i),
-                        LocalDate.now().minusMonths(i - 1)
+                        LocalDate.now().minusMonths(i - 1),
+                        Set.of(
+                                new TechnologyDto(i, "Technology " + i, null, Set.of(
+                                        new TechnologyCategoryDto(i % 3 + 1, "Category " + (i % 3 + 1), "#FEF0DC", "#7A3E00", "#F9C47A")
+                                ))
+                        )
                 ))
                 .toList();
     }

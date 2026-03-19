@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -13,10 +14,11 @@ public class ExperienceDto {
 
     private Integer id;
     private String title;
-    private Integer organizationId;
-    private Integer statusId;
-    private Integer categoryId;
+    private OrganizationDto organization;
+    private String status;
+    private String category;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
+    private Set<TechnologyDto> technologies;
 }

@@ -11,5 +11,5 @@ public class OrganizationDto {
 
     private Integer id;
     private String name;
-    private String icon_url;
+    private String logoUrl;
 }

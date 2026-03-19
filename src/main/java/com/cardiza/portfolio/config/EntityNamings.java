@@ -26,6 +26,7 @@ public class EntityNamings {
 
     public static final String ORGANIZATION = "organization";
     public static final String ORGANIZATION_ID = "organization_id";
+    public static final String LOGO_URL = "logo_url";
 
     public static final String TECHNOLOGY = "technology";
     public static final String TECHNOLOGY_ID = "technology_id";

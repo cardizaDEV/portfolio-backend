@@ -15,5 +15,5 @@ public class CommentDto {
     private String userId;
     private Integer experienceId;
     private String commentText;
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 }

@@ -1,7 +1,7 @@
 CREATE TABLE organization (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
-    icon_url TEXT
+    logo_url TEXT
 );
 
 CREATE TABLE technology_category (
