@@ -41,7 +41,7 @@ class CommentControllerTest {
     void setUp() {
         commentList = IntStream.rangeClosed(1, 15)
                 .mapToObj(i -> new CommentDto(
-                        (long) i,
+                        i,
                         "user" + i,
                         1,
                         "Comment " + i,

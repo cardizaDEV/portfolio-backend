@@ -4,11 +4,26 @@ CREATE TABLE organization (
     icon_url TEXT
 );
 
+CREATE TABLE technology_category (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL,
+    color_bg CHAR(7) NOT NULL,
+    color_text CHAR(7) NOT NULL,
+    color_border CHAR(7) NOT NULL
+);
+
 CREATE TABLE technology (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
-    icon_url TEXT
+    url TEXT
 );
+
+CREATE TABLE technology_technology_category (
+    technology_id INTEGER REFERENCES technology(id) NOT NULL,
+    category_id INTEGER REFERENCES technology_category(id) NOT NULL,
+    PRIMARY KEY (technology_id, category_id)
+);
+
 
 CREATE TABLE experience_status (
     id SERIAL PRIMARY KEY,

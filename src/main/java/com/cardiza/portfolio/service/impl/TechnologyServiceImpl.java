@@ -1,8 +1,10 @@
 package com.cardiza.portfolio.service.impl;
 
+import com.cardiza.portfolio.dto.TechnologyCategoryDto;
 import com.cardiza.portfolio.dto.TechnologyDto;
 import com.cardiza.portfolio.entity.Technology;
 import com.cardiza.portfolio.mapper.GenericMapper;
+import com.cardiza.portfolio.repository.TechnologyCategoryRepository;
 import com.cardiza.portfolio.repository.TechnologyRepository;
 import com.cardiza.portfolio.service.TechnologyService;
 import lombok.NonNull;
@@ -21,6 +23,8 @@ public class TechnologyServiceImpl implements TechnologyService {
     private final GenericMapper genericMapper;
     @NonNull
     private final TechnologyRepository technologyRepository;
+    @NonNull
+    private final TechnologyCategoryRepository technologyCategoryRepository;
 
     @Override
     @Cacheable("technologies")
@@ -41,5 +45,14 @@ public class TechnologyServiceImpl implements TechnologyService {
                 .map(genericMapper::technologyToDto)
                 .toList();
         return new PageImpl<>(dtoList, pageable, techPage.getTotalElements());
+    }
+
+    @Override
+    @Cacheable("technology-categories")
+    public List<TechnologyCategoryDto> getAllCategories() {
+        return this.technologyCategoryRepository.findAll()
+                .stream()
+                .map(this.genericMapper::technologyCategoryToDto)
+                .toList();
     }
 }

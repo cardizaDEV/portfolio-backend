@@ -4,16 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
+public class TechnologyCategoryDto {
 
     private Integer id;
-    private String userId;
-    private Integer experienceId;
-    private String commentText;
-    private LocalDateTime created_at;
+    private String name;
+    private String colorBg;
+    private String colorText;
+    private String colorBorder;
 }

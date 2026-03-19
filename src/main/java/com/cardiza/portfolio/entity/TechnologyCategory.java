@@ -5,16 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 import static com.cardiza.portfolio.config.ApplicationValues.DEFAULT_LONG_STRING_LENGTH;
 import static com.cardiza.portfolio.config.EntityNamings.*;
 
 @Entity
+@Table(name = TECHNOLOGY_CATEGORY)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Technology {
+public class TechnologyCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +22,12 @@ public class Technology {
     @Column(unique = true, nullable = false, length = DEFAULT_LONG_STRING_LENGTH)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
-    private String url;
+    @Column(name = COLOR_BG, nullable = false, length = 7)
+    private String colorBg;
 
-    @ManyToMany(mappedBy = TECHNOLOGIES)
-    private Set<Experience> experiences;
+    @Column(name = COLOR_TEXT, nullable = false, length = 7)
+    private String colorText;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "technology_technology_category",
-            joinColumns = @JoinColumn(name = TECHNOLOGY_ID),
-            inverseJoinColumns = @JoinColumn(name = CATEGORY_ID)
-    )
-    private Set<TechnologyCategory> categories;
+    @Column(name = COLOR_BORDER, nullable = false, length = 7)
+    private String colorBorder;
 }

@@ -14,6 +14,12 @@ public class EntityNamings {
     public static final String STATUS_ID = "status_id";
     public static final String STATUS = "status";
 
+    public static final String TECHNOLOGY_CATEGORY = "technology_category";
+    public static final String COLOR_BG = "color_bg";
+    public static final String COLOR_TEXT = "color_text";
+    public static final String COLOR_BORDER = "color_border";
+
+
     public static final String EXPERIENCE_CATEGORY = "experience_category";
     public static final String CATEGORY_ID = "category_id";
     public static final String CATEGORY = "category";

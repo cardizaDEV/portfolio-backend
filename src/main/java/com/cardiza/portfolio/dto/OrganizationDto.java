@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrganizationDto {
 
-    private long id;
+    private Integer id;
     private String name;
     private String icon_url;
 }

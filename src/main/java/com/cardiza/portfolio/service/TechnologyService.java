@@ -1,5 +1,6 @@
 package com.cardiza.portfolio.service;
 
+import com.cardiza.portfolio.dto.TechnologyCategoryDto;
 import com.cardiza.portfolio.dto.TechnologyDto;
 import org.springframework.data.domain.Page;
 
@@ -9,4 +10,6 @@ public interface TechnologyService {
     List<TechnologyDto> getAllTechnologies();
 
     Page<TechnologyDto> getAllTechnologiesPaginated(int page, int size, String sortBy);
+
+    List<TechnologyCategoryDto> getAllCategories();
 }

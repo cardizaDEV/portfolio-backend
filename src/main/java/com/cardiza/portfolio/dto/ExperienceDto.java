@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ExperienceDto {
 
-    private long id;
+    private Integer id;
     private String title;
-    private long organizationId;
-    private long statusId;
-    private long categoryId;
+    private Integer organizationId;
+    private Integer statusId;
+    private Integer categoryId;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;

@@ -1,6 +1,7 @@
 package com.cardiza.portfolio;
 
 import com.cardiza.portfolio.controller.TechnologyController;
+import com.cardiza.portfolio.dto.TechnologyCategoryDto;
 import com.cardiza.portfolio.dto.TechnologyDto;
 import com.cardiza.portfolio.service.TechnologyService;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import static com.cardiza.portfolio.config.ControllerNamings.ALL;
@@ -38,11 +40,20 @@ class TechnologyControllerTest {
 
     @BeforeEach
     void setUp() {
+        TechnologyCategoryDto backendCategory = new TechnologyCategoryDto(
+                1,
+                "Backend",
+                "#FEF0DC",
+                "#7A3E00",
+                "#F9C47A"
+        );
+
         techList = IntStream.rangeClosed(1, 15)
                 .mapToObj(i -> new TechnologyDto(
                         i,
                         "Technology " + i,
-                        "iconBase64_" + i
+                        "url" + i,
+                        Set.of(backendCategory)
                 ))
                 .toList();
     }
