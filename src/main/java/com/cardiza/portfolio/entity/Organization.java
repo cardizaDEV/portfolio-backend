@@ -27,6 +27,6 @@ public class Organization {
     @Column(name = LOGO_URL, columnDefinition = "TEXT")
     private String logoUrl;
 
-    @OneToMany(mappedBy = ORGANIZATION)
+    @OneToMany(mappedBy = ORGANIZATION, fetch = FetchType.LAZY)
     private List<Experience> experiences;
 }

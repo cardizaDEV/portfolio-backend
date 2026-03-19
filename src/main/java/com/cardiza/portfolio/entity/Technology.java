@@ -26,7 +26,7 @@ public class Technology {
     @Column(columnDefinition = "TEXT")
     private String url;
 
-    @ManyToMany(mappedBy = TECHNOLOGIES)
+    @ManyToMany(mappedBy = TECHNOLOGIES, fetch = FetchType.LAZY)
     private Set<Experience> experiences;
 
     @ManyToMany(fetch = FetchType.LAZY)

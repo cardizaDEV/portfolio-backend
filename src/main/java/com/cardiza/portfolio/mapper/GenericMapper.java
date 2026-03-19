@@ -5,6 +5,8 @@ import com.cardiza.portfolio.entity.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Set;
+
 @Mapper(componentModel = "spring")
 public interface GenericMapper {
 
@@ -16,13 +18,18 @@ public interface GenericMapper {
 
     ExperienceCategoryDto experienceCategoryToDto(ExperienceCategory experienceCategory);
 
-    @Mapping(source = "logoUrl", target = "logoUrl")
     OrganizationDto organizationToDto(Organization organization);
 
-    @Mapping(source = "organization", target = "organization")
-    @Mapping(source = "status", target = "status")
-    @Mapping(source = "category", target = "category")
-    ExperienceDto experienceToDto(Experience experience);
+    @Mapping(source = "experience.organization", target = "organization")
+    @Mapping(source = "experience.status", target = "status")
+    @Mapping(source = "experience.category", target = "category")
+    @Mapping(source = "experience.id", target = "id")
+    @Mapping(source = "experience.title", target = "title")
+    @Mapping(source = "experience.description", target = "description")
+    @Mapping(source = "experience.startDate", target = "startDate")
+    @Mapping(source = "experience.endDate", target = "endDate")
+    @Mapping(source = "technologies", target = "technologies")
+    ExperienceDto experienceToDto(Experience experience, Set<Technology> technologies);
 
     @Mapping(source = "experience.id", target = "experienceId")
     CommentDto commentToDto(Comment comment);

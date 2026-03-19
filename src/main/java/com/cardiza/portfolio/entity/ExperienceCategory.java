@@ -33,6 +33,6 @@ public class ExperienceCategory {
     @Column(name = COLOR_BORDER, nullable = false, length = 7)
     private String colorBorder;
 
-    @OneToMany(mappedBy = CATEGORY)
+    @OneToMany(mappedBy = CATEGORY, fetch = FetchType.LAZY)
     private List<Experience> experiences;
 }

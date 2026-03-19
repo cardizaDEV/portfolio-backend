@@ -186,7 +186,7 @@ INSERT INTO experience (title, organization_id, status_id, category_id, descript
  (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
  (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
  'Professional training in software development.',
- '2020-09-01', '2022-12-01');
+ '2020-09-01', '2022-05-01');
 
 INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
 ('SCIENCE BACCALAUREATE',
@@ -194,15 +194,7 @@ INSERT INTO experience (title, organization_id, status_id, category_id, descript
  (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
  (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
  NULL,
- '2018-09-01', '2020-06-01');
-
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('COMPUTER ENGINEERING',
- (SELECT id FROM organization WHERE name = 'UNED'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
- NULL,
- '2022-01-01', '2023-01-01');
+ '2018-09-01', '2020-05-01');
 
 INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
 ('CARDIZA.DEV',

@@ -4,10 +4,12 @@ import com.cardiza.portfolio.dto.ExperienceCategoryDto;
 import com.cardiza.portfolio.dto.ExperienceDto;
 import com.cardiza.portfolio.dto.ExperienceStatusDto;
 import com.cardiza.portfolio.entity.Experience;
+import com.cardiza.portfolio.entity.Technology;
 import com.cardiza.portfolio.mapper.GenericMapper;
 import com.cardiza.portfolio.repository.ExperienceCategoryRepository;
 import com.cardiza.portfolio.repository.ExperienceRepository;
 import com.cardiza.portfolio.repository.ExperienceStatusRepository;
+import com.cardiza.portfolio.repository.TechnologyRepository;
 import com.cardiza.portfolio.service.ExperienceService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -29,13 +32,18 @@ public class ExperienceServiceImpl implements ExperienceService {
     private final ExperienceCategoryRepository experienceCategoryRepository;
     @NonNull
     private final ExperienceStatusRepository experienceStatusRepository;
+    @NonNull
+    private final TechnologyRepository technologyRepository;
 
     @Override
     @Cacheable("experiences")
     public List<ExperienceDto> getAllExperiences() {
         return this.experienceRepository.findAll()
                 .stream()
-                .map(this.genericMapper::experienceToDto)
+                .map(exp -> {
+                    Set<Technology> technologies = this.technologyRepository.findAllByExperiences_Id(exp.getId());
+                    return this.genericMapper.experienceToDto(exp, technologies);
+                })
                 .toList();
     }
 
@@ -46,7 +54,10 @@ public class ExperienceServiceImpl implements ExperienceService {
         Page<Experience> experiencePage = experienceRepository.findAll(pageable);
         List<ExperienceDto> dtoList = experiencePage.getContent()
                 .stream()
-                .map(genericMapper::experienceToDto)
+                .map(exp -> {
+                    Set<Technology> technologies = this.technologyRepository.findAllByExperiences_Id(exp.getId());
+                    return this.genericMapper.experienceToDto(exp, technologies);
+                })
                 .toList();
         return new PageImpl<>(dtoList, pageable, experiencePage.getTotalElements());
     }

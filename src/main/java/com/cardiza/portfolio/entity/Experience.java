@@ -46,7 +46,7 @@ public class Experience {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = EXPERIENCE)
+    @OneToMany(mappedBy = EXPERIENCE, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     @ManyToMany
