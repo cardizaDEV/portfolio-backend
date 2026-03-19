@@ -48,7 +48,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    @Cacheable("technology-categories")
+    @Cacheable("technologyCategories")
     public List<TechnologyCategoryDto> getAllCategories() {
         return this.technologyCategoryRepository.findAll()
                 .stream()

@@ -1,6 +1,8 @@
 package com.cardiza.portfolio.controller;
 
+import com.cardiza.portfolio.dto.ExperienceCategoryDto;
 import com.cardiza.portfolio.dto.ExperienceDto;
+import com.cardiza.portfolio.dto.ExperienceStatusDto;
 import com.cardiza.portfolio.service.ExperienceService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.cardiza.portfolio.config.ApplicationValues.*;
-import static com.cardiza.portfolio.config.ControllerNamings.ALL;
-import static com.cardiza.portfolio.config.ControllerNamings.EXPERIENCE;
+import static com.cardiza.portfolio.config.ControllerNamings.*;
 
 @RestController
 @RequestMapping(EXPERIENCE)
@@ -36,5 +37,15 @@ public class ExperienceController {
             @RequestParam(defaultValue = DEFAULT_SORT_BY) String sortBy
     ) {
         return this.experienceService.getAllExperiencesPaginated(page, size, sortBy);
+    }
+
+    @GetMapping(CATEGORIES)
+    public List<ExperienceCategoryDto> getAllCategories() {
+        return this.experienceService.getAllCategories();
+    }
+
+    @GetMapping(STATUSES)
+    public List<ExperienceStatusDto> getAllStatuses() {
+        return this.experienceService.getAllStatuses();
     }
 }

@@ -1,11 +1,20 @@
-INSERT INTO experience_status (name) VALUES
-('COMPLETED'),
-('IN_PROGRESS');
+DELETE FROM experience_technology;
+DELETE FROM technology_technology_category;
+DELETE FROM experience;
+DELETE FROM technology;
+DELETE FROM technology_category;
+DELETE FROM experience_category;
+DELETE FROM experience_status;
+DELETE FROM organization;
 
-INSERT INTO experience_category (name) VALUES
-('WORK'),
-('EDUCATION'),
-('PROJECT');
+INSERT INTO experience_status (name, color_bg, color_text, color_border) VALUES
+('COMPLETED', '#EAF3DE', '#27500A', '#C0DD97'),
+('IN_PROGRESS', '#FEF0DC', '#7A3E00', '#F9C47A');
+
+INSERT INTO experience_category (name, color_bg, color_text, color_border) VALUES
+('WORK', '#FCEBEB', '#791F1F', '#F7C1C1'),
+('EDUCATION', '#E6F1FB', '#185FA5', '#B5D4F4'),
+('PROJECT', '#EAF3DE', '#27500A', '#C0DD97');
 
 INSERT INTO organization (name) VALUES
 ('Imatia'),
@@ -16,65 +25,65 @@ INSERT INTO organization (name) VALUES
 ('UNED');
 
 INSERT INTO technology_category (name, color_bg, color_text, color_border) VALUES
-('Backend',        '#FEF0DC', '#7A3E00', '#F9C47A'),
-('Frontend',       '#E6F1FB', '#185FA5', '#B5D4F4'),
-('Database',       '#EAF3DE', '#27500A', '#C0DD97'),
+('Backend', '#FEF0DC', '#7A3E00', '#F9C47A'),
+('Frontend', '#E6F1FB', '#185FA5', '#B5D4F4'),
+('Database', '#EAF3DE', '#27500A', '#C0DD97'),
 ('Infrastructure', '#EEEDFE', '#3C3489', '#CECBF6'),
-('Testing',        '#FCEBEB', '#791F1F', '#F7C1C1'),
-('Utilities',      '#F1EFE8', '#444441', '#D3D1C7'),
-('Tools',          '#FBEAF0', '#4B1528', '#F4C0D1'),
-('Styles',         '#E1F5EE', '#085041', '#9FE1CB');
+('Testing', '#FCEBEB', '#791F1F', '#F7C1C1'),
+('Utilities', '#F1EFE8', '#444441', '#D3D1C7'),
+('Tools', '#FBEAF0', '#4B1528', '#F4C0D1'),
+('Styles', '#E1F5EE', '#085041', '#9FE1CB');
 
 INSERT INTO technology (name, url) VALUES
-('ActiveMQ',                'https://activemq.apache.org'),
-('Angular',                 'https://angular.dev'),
-('ArgoCD',                  'https://argoproj.github.io/cd'),
-('AWS',                     'https://aws.amazon.com'),
-('Caffeine Cache',          'https://github.com/ben-manes/caffeine'),
-('CSS',                     'https://developer.mozilla.org/en-US/docs/Web/CSS'),
-('D3.js',                   'https://d3js.org'),
-('Dart',                    'https://dart.dev'),
-('Docker',                  'https://www.docker.com'),
-('PostgreSQL',              'https://www.postgresql.org'),
-('Figma',                   'https://www.figma.com'),
-('Firebase',                'https://firebase.google.com'),
-('Flutter',                 'https://flutter.dev'),
-('Flyway',                  'https://flywaydb.org'),
-('Git',                     'https://git-scm.com'),
-('GitHub Actions',          'https://github.com/features/actions'),
-('Gradle',                  'https://gradle.org'),
-('Grafana',                 'https://grafana.com'),
-('Ontimize Web',            'https://ontimizeweb.github.io/docs'),
-('HTML',                    'https://developer.mozilla.org/en-US/docs/Web/HTML'),
-('JasperReports',           'https://www.jaspersoft.com'),
-('Java',                    'https://www.java.com'),
-('Jenkins',                 'https://www.jenkins.io'),
-('Jira',                    'https://www.atlassian.com/software/jira'),
-('JPA',                     'https://jakarta.ee/specifications/persistence'),
-('JUnit',                   'https://junit.org'),
-('Keycloak',                'https://www.keycloak.org'),
-('Kotlin',                  'https://kotlinlang.org'),
-('Liquibase',               'https://www.liquibase.com'),
-('Lombok',                  'https://projectlombok.org'),
-('MapStruct',               'https://mapstruct.org'),
-('Maven',                   'https://maven.apache.org'),
-('Mockito',                 'https://site.mockito.org'),
-('MongoDB',                 'https://www.mongodb.com'),
-('MySQL',                   'https://www.mysql.com'),
-('Node.js',                 'https://nodejs.org'),
-('npm',                     'https://www.npmjs.com'),
-('Ontimize Boot',           'https://ontimize.github.io/ontimize-boot'),
-('OpenAPI (Swagger)',       'https://swagger.io'),
-('PostgreSQL: Multi-Tenancy','https://www.postgresql.org'),
-('Postman',                 'https://www.postman.com'),
-('S3',                      'https://aws.amazon.com/s3'),
-('SCSS',                    'https://sass-lang.com'),
-('Spring Boot',             'https://spring.io/projects/spring-boot'),
-('Spring Security',         'https://spring.io/projects/spring-security'),
-('Springfox (Swagger)',     'https://swagger.io'),
-('T-SQL',                   'https://learn.microsoft.com/en-us/sql/t-sql'),
-('TailwindCSS',             'https://tailwindcss.com'),
-('TypeScript',              'https://www.typescriptlang.org');
+('ActiveMQ', 'https://activemq.apache.org'),
+('Angular', 'https://angular.dev'),
+('ArgoCD', 'https://argoproj.github.io/cd'),
+('AWS', 'https://aws.amazon.com'),
+('Caffeine Cache', 'https://github.com/ben-manes/caffeine'),
+('CSS', 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
+('D3.js', 'https://d3js.org'),
+('Dart', 'https://dart.dev'),
+('Docker', 'https://www.docker.com'),
+('PostgreSQL', 'https://www.postgresql.org'),
+('Figma', 'https://www.figma.com'),
+('Firebase', 'https://firebase.google.com'),
+('Flutter', 'https://flutter.dev'),
+('Flyway', 'https://flywaydb.org'),
+('Git', 'https://git-scm.com'),
+('GitHub Actions', 'https://github.com/features/actions'),
+('Gradle', 'https://gradle.org'),
+('Grafana', 'https://grafana.com'),
+('Ontimize Web', 'https://ontimizeweb.github.io/docs'),
+('HTML', 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
+('JasperReports', 'https://www.jaspersoft.com'),
+('Java', 'https://www.java.com'),
+('Jenkins', 'https://www.jenkins.io'),
+('Jira', 'https://www.atlassian.com/software/jira'),
+('JPA', 'https://jakarta.ee/specifications/persistence'),
+('JUnit', 'https://junit.org'),
+('Keycloak', 'https://www.keycloak.org'),
+('Kotlin', 'https://kotlinlang.org'),
+('Liquibase', 'https://www.liquibase.com'),
+('Lombok', 'https://projectlombok.org'),
+('MapStruct', 'https://mapstruct.org'),
+('Maven', 'https://maven.apache.org'),
+('Mockito', 'https://site.mockito.org'),
+('MongoDB', 'https://www.mongodb.com'),
+('MySQL', 'https://www.mysql.com'),
+('Node.js', 'https://nodejs.org'),
+('npm', 'https://www.npmjs.com'),
+('Ontimize Boot', 'https://ontimize.github.io/ontimize-boot'),
+('OpenAPI (Swagger)', 'https://swagger.io'),
+('PostgreSQL: Multi-Tenancy', 'https://www.postgresql.org'),
+('Postman', 'https://www.postman.com'),
+('S3', 'https://aws.amazon.com/s3'),
+('SCSS', 'https://sass-lang.com'),
+('Spring Boot', 'https://spring.io/projects/spring-boot'),
+('Spring Security', 'https://spring.io/projects/spring-security'),
+('Springfox (Swagger)', 'https://swagger.io'),
+('T-SQL', 'https://learn.microsoft.com/en-us/sql/t-sql'),
+('TailwindCSS', 'https://tailwindcss.com'),
+('TypeScript', 'https://www.typescriptlang.org');
 
 INSERT INTO technology_technology_category (technology_id, category_id)
 SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'ActiveMQ' AND c.name = 'Backend'

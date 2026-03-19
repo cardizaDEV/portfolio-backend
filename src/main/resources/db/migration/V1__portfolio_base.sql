@@ -24,15 +24,20 @@ CREATE TABLE technology_technology_category (
     PRIMARY KEY (technology_id, category_id)
 );
 
-
 CREATE TABLE experience_status (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) UNIQUE NOT NULL
+    name VARCHAR(50) UNIQUE NOT NULL,
+    color_bg CHAR(7) NOT NULL,
+    color_text CHAR(7) NOT NULL,
+    color_border CHAR(7) NOT NULL
 );
 
 CREATE TABLE experience_category (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) UNIQUE NOT NULL
+    name VARCHAR(50) UNIQUE NOT NULL,
+    color_bg CHAR(7) NOT NULL,
+    color_text CHAR(7) NOT NULL,
+    color_border CHAR(7) NOT NULL
 );
 
 CREATE TABLE experience (

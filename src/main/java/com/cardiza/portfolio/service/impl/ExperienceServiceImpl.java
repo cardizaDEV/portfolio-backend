@@ -1,9 +1,13 @@
 package com.cardiza.portfolio.service.impl;
 
+import com.cardiza.portfolio.dto.ExperienceCategoryDto;
 import com.cardiza.portfolio.dto.ExperienceDto;
+import com.cardiza.portfolio.dto.ExperienceStatusDto;
 import com.cardiza.portfolio.entity.Experience;
 import com.cardiza.portfolio.mapper.GenericMapper;
+import com.cardiza.portfolio.repository.ExperienceCategoryRepository;
 import com.cardiza.portfolio.repository.ExperienceRepository;
+import com.cardiza.portfolio.repository.ExperienceStatusRepository;
 import com.cardiza.portfolio.service.ExperienceService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +25,10 @@ public class ExperienceServiceImpl implements ExperienceService {
     private final GenericMapper genericMapper;
     @NonNull
     private final ExperienceRepository experienceRepository;
+    @NonNull
+    private final ExperienceCategoryRepository experienceCategoryRepository;
+    @NonNull
+    private final ExperienceStatusRepository experienceStatusRepository;
 
     @Override
     @Cacheable("experiences")
@@ -41,5 +49,23 @@ public class ExperienceServiceImpl implements ExperienceService {
                 .map(genericMapper::experienceToDto)
                 .toList();
         return new PageImpl<>(dtoList, pageable, experiencePage.getTotalElements());
+    }
+
+    @Override
+    @Cacheable("experienceCategories")
+    public List<ExperienceCategoryDto> getAllCategories() {
+        return this.experienceCategoryRepository.findAll()
+                .stream()
+                .map(this.genericMapper::experienceCategoryToDto)
+                .toList();
+    }
+
+    @Override
+    @Cacheable("experienceStatuses")
+    public List<ExperienceStatusDto> getAllStatuses() {
+        return this.experienceStatusRepository.findAll()
+                .stream()
+                .map(this.genericMapper::experienceStatusToDto)
+                .toList();
     }
 }

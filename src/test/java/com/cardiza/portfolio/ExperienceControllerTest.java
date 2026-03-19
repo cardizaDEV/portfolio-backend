@@ -1,10 +1,7 @@
 package com.cardiza.portfolio;
 
 import com.cardiza.portfolio.controller.ExperienceController;
-import com.cardiza.portfolio.dto.ExperienceDto;
-import com.cardiza.portfolio.dto.OrganizationDto;
-import com.cardiza.portfolio.dto.TechnologyCategoryDto;
-import com.cardiza.portfolio.dto.TechnologyDto;
+import com.cardiza.portfolio.dto.*;
 import com.cardiza.portfolio.service.ExperienceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,8 +45,8 @@ class ExperienceControllerTest {
                         i,
                         "Experience " + i,
                         new OrganizationDto(i % 5 + 1, "Organization " + (i % 5 + 1), null),
-                        i % 3 == 0 ? "active" : "inactive",
-                        i % 4 == 0 ? "work" : "education",
+                        new ExperienceStatusDto(i % 2 + 1, i % 2 == 0 ? "COMPLETED" : "IN_PROGRESS", "#EAF3DE", "#27500A", "#C0DD97"),
+                        new ExperienceCategoryDto(i % 3 + 1, i % 3 == 0 ? "WORK" : i % 3 == 1 ? "EDUCATION" : "PROJECT", "#FCEBEB", "#791F1F", "#F7C1C1"),
                         "Description for experience " + i,
                         LocalDate.now().minusMonths(i),
                         LocalDate.now().minusMonths(i - 1),

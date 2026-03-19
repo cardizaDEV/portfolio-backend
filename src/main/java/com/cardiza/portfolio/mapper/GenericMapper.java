@@ -12,11 +12,16 @@ public interface GenericMapper {
 
     TechnologyCategoryDto technologyCategoryToDto(TechnologyCategory technologyCategory);
 
+    ExperienceStatusDto experienceStatusToDto(ExperienceStatus experienceStatus);
+
+    ExperienceCategoryDto experienceCategoryToDto(ExperienceCategory experienceCategory);
+
+    @Mapping(source = "logoUrl", target = "logoUrl")
     OrganizationDto organizationToDto(Organization organization);
 
-    @Mapping(source = "status.name", target = "status")
-    @Mapping(source = "category.name", target = "category")
     @Mapping(source = "organization", target = "organization")
+    @Mapping(source = "status", target = "status")
+    @Mapping(source = "category", target = "category")
     ExperienceDto experienceToDto(Experience experience);
 
     @Mapping(source = "experience.id", target = "experienceId")

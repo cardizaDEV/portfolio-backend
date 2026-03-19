@@ -15,8 +15,8 @@ public class ExperienceDto {
     private Integer id;
     private String title;
     private OrganizationDto organization;
-    private String status;
-    private String category;
+    private ExperienceStatusDto status;
+    private ExperienceCategoryDto category;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
