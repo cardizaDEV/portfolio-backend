@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import static com.cardiza.portfolio.config.ApplicationValues.DEFAULT_LONG_STRING_LENGTH;
-import static com.cardiza.portfolio.config.EntityNamings.LOGO_URL;
 import static com.cardiza.portfolio.config.EntityNamings.ORGANIZATION;
 
 @Entity
@@ -24,7 +23,7 @@ public class Organization {
     @Column(unique = true, nullable = false, length = DEFAULT_LONG_STRING_LENGTH)
     private String name;
 
-    @Column(name = LOGO_URL, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String logoUrl;
 
     @OneToMany(mappedBy = ORGANIZATION, fetch = FetchType.LAZY)

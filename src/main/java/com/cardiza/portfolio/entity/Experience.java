@@ -22,9 +22,6 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = DEFAULT_LONG_STRING_LENGTH)
-    private String title;
-
     @ManyToOne
     @JoinColumn(name = ORGANIZATION_ID, nullable = false)
     private Organization organization;
@@ -37,17 +34,26 @@ public class Experience {
     @JoinColumn(name = CATEGORY_ID, nullable = false)
     private ExperienceCategory category;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
-    @Column(name = "start_date", nullable = false)
+    @Column(nullable = false)
     private LocalDate startDate;
 
-    @Column(name = "end_date")
+    @Column()
     private LocalDate endDate;
 
     @OneToMany(mappedBy = EXPERIENCE, fetch = FetchType.LAZY)
     private List<Comment> comments;
+
+    @Column(nullable = false, length = DEFAULT_LONG_STRING_LENGTH)
+    private String titleEs;
+
+    @Column(nullable = false, length = DEFAULT_LONG_STRING_LENGTH)
+    private String titleEn;
+
+    @Column(columnDefinition = "TEXT")
+    private String descriptionEs;
+
+    @Column(columnDefinition = "TEXT")
+    private String descriptionEn;
 
     @ManyToMany
     @JoinTable(

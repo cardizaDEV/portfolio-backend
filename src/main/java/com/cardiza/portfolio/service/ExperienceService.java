@@ -8,11 +8,11 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface ExperienceService {
-    List<ExperienceDto> getAllExperiences();
+    List<ExperienceDto> getAllExperiences(String lang);
 
-    Page<ExperienceDto> getAllExperiencesPaginated(int page, int size, String sortBy);
+    Page<ExperienceDto> getAllExperiencesPaginated(int page, int size, String sortBy, String lang);
 
-    List<ExperienceCategoryDto> getAllCategories();
+    List<ExperienceCategoryDto> getAllCategories(String lang);
 
-    List<ExperienceStatusDto> getAllStatuses();
+    List<ExperienceStatusDto> getAllStatuses(String lang);
 }

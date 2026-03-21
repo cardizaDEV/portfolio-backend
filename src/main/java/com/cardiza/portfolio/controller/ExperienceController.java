@@ -7,10 +7,7 @@ import com.cardiza.portfolio.service.ExperienceService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,26 +23,27 @@ public class ExperienceController {
     private final ExperienceService experienceService;
 
     @GetMapping(ALL)
-    public List<ExperienceDto> getAllExperiences() {
-        return this.experienceService.getAllExperiences();
+    public List<ExperienceDto> getAllExperiences(@RequestHeader(value = "Accept-Language", defaultValue = "es") String lang) {
+        return this.experienceService.getAllExperiences(lang);
     }
 
     @GetMapping
     public Page<ExperienceDto> getAllExperiencesPaginated(
             @RequestParam(defaultValue = DEFAULT_PAGE) int page,
             @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) int size,
-            @RequestParam(defaultValue = DEFAULT_SORT_BY) String sortBy
+            @RequestParam(defaultValue = DEFAULT_SORT_BY) String sortBy,
+            @RequestHeader(value = "Accept-Language", defaultValue = "es") String lang
     ) {
-        return this.experienceService.getAllExperiencesPaginated(page, size, sortBy);
+        return this.experienceService.getAllExperiencesPaginated(page, size, sortBy, lang);
     }
 
     @GetMapping(CATEGORIES)
-    public List<ExperienceCategoryDto> getAllCategories() {
-        return this.experienceService.getAllCategories();
+    public List<ExperienceCategoryDto> getAllCategories(@RequestHeader(value = "Accept-Language", defaultValue = "es") String lang) {
+        return this.experienceService.getAllCategories(lang);
     }
 
     @GetMapping(STATUSES)
-    public List<ExperienceStatusDto> getAllStatuses() {
-        return this.experienceService.getAllStatuses();
+    public List<ExperienceStatusDto> getAllStatuses(@RequestHeader(value = "Accept-Language", defaultValue = "es") String lang) {
+        return this.experienceService.getAllStatuses(lang);
     }
 }

@@ -36,47 +36,47 @@ public class ExperienceServiceImpl implements ExperienceService {
     private final TechnologyRepository technologyRepository;
 
     @Override
-    @Cacheable("experiences")
-    public List<ExperienceDto> getAllExperiences() {
+    @Cacheable(value = "experiences", key = "#lang")
+    public List<ExperienceDto> getAllExperiences(String lang) {
         return this.experienceRepository.findAll()
                 .stream()
                 .map(exp -> {
                     Set<Technology> technologies = this.technologyRepository.findAllByExperiences_Id(exp.getId());
-                    return this.genericMapper.experienceToDto(exp, technologies);
+                    return this.genericMapper.experienceToDto(exp, technologies, lang);
                 })
                 .toList();
     }
 
     @Override
-    @Cacheable(value = "experiences", key = "#page + '-' + #size + '-' + #sortBy")
-    public Page<ExperienceDto> getAllExperiencesPaginated(int page, int size, String sortBy) {
+    @Cacheable(value = "experiences", key = "#lang + '-' + #page + '-' + #size + '-' + #sortBy")
+    public Page<ExperienceDto> getAllExperiencesPaginated(int page, int size, String sortBy, String lang) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Experience> experiencePage = experienceRepository.findAll(pageable);
         List<ExperienceDto> dtoList = experiencePage.getContent()
                 .stream()
                 .map(exp -> {
                     Set<Technology> technologies = this.technologyRepository.findAllByExperiences_Id(exp.getId());
-                    return this.genericMapper.experienceToDto(exp, technologies);
+                    return this.genericMapper.experienceToDto(exp, technologies, lang);
                 })
                 .toList();
         return new PageImpl<>(dtoList, pageable, experiencePage.getTotalElements());
     }
 
     @Override
-    @Cacheable("experienceCategories")
-    public List<ExperienceCategoryDto> getAllCategories() {
+    @Cacheable(value = "experienceCategories", key = "#lang")
+    public List<ExperienceCategoryDto> getAllCategories(String lang) {
         return this.experienceCategoryRepository.findAll()
                 .stream()
-                .map(this.genericMapper::experienceCategoryToDto)
+                .map(c -> this.genericMapper.experienceCategoryToDto(c, lang))
                 .toList();
     }
 
     @Override
-    @Cacheable("experienceStatuses")
-    public List<ExperienceStatusDto> getAllStatuses() {
+    @Cacheable(value = "experienceStatuses", key = "#lang")
+    public List<ExperienceStatusDto> getAllStatuses(String lang) {
         return this.experienceStatusRepository.findAll()
                 .stream()
-                .map(this.genericMapper::experienceStatusToDto)
+                .map(s -> this.genericMapper.experienceStatusToDto(s, lang))
                 .toList();
     }
 }

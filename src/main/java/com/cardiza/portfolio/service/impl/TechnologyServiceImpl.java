@@ -27,32 +27,32 @@ public class TechnologyServiceImpl implements TechnologyService {
     private final TechnologyCategoryRepository technologyCategoryRepository;
 
     @Override
-    @Cacheable("technologies")
-    public List<TechnologyDto> getAllTechnologies() {
+    @Cacheable(value = "technologies", key = "#lang")
+    public List<TechnologyDto> getAllTechnologies(String lang) {
         return this.technologyRepository.findAll()
                 .stream()
-                .map(this.genericMapper::technologyToDto)
+                .map(t -> this.genericMapper.technologyToDto(t, lang))
                 .toList();
     }
 
     @Override
-    @Cacheable(value = "technologies", key = "#page + '-' + #size + '-' + #sortBy")
-    public Page<TechnologyDto> getAllTechnologiesPaginated(int page, int size, String sortBy) {
+    @Cacheable(value = "technologies", key = "#lang + '-' + #page + '-' + #size + '-' + #sortBy")
+    public Page<TechnologyDto> getAllTechnologiesPaginated(int page, int size, String sortBy, String lang) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Technology> techPage = technologyRepository.findAll(pageable);
         List<TechnologyDto> dtoList = techPage.getContent()
                 .stream()
-                .map(genericMapper::technologyToDto)
+                .map(t -> this.genericMapper.technologyToDto(t, lang))
                 .toList();
         return new PageImpl<>(dtoList, pageable, techPage.getTotalElements());
     }
 
     @Override
-    @Cacheable("technologyCategories")
-    public List<TechnologyCategoryDto> getAllCategories() {
+    @Cacheable(value = "technologyCategories", key = "#lang")
+    public List<TechnologyCategoryDto> getAllCategories(String lang) {
         return this.technologyCategoryRepository.findAll()
                 .stream()
-                .map(this.genericMapper::technologyCategoryToDto)
+                .map(c -> this.genericMapper.technologyCategoryToDto(c, lang))
                 .toList();
     }
 }

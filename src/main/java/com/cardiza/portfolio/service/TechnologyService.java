@@ -7,9 +7,9 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface TechnologyService {
-    List<TechnologyDto> getAllTechnologies();
+    List<TechnologyDto> getAllTechnologies(String lang);
 
-    Page<TechnologyDto> getAllTechnologiesPaginated(int page, int size, String sortBy);
+    Page<TechnologyDto> getAllTechnologiesPaginated(int page, int size, String sortBy, String lang);
 
-    List<TechnologyCategoryDto> getAllCategories();
+    List<TechnologyCategoryDto> getAllCategories(String lang);
 }

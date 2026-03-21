@@ -1,20 +1,11 @@
-DELETE FROM experience_technology;
-DELETE FROM technology_technology_category;
-DELETE FROM experience;
-DELETE FROM technology;
-DELETE FROM technology_category;
-DELETE FROM experience_category;
-DELETE FROM experience_status;
-DELETE FROM organization;
+INSERT INTO experience_status (name_es, name_en, color_bg, color_text, color_border) VALUES
+('COMPLETADO', 'COMPLETED', '#EAF3DE', '#27500A', '#C0DD97'),
+('EN PROGRESO', 'IN PROGRESS', '#FEF0DC', '#7A3E00', '#F9C47A');
 
-INSERT INTO experience_status (name, color_bg, color_text, color_border) VALUES
-('COMPLETED', '#EAF3DE', '#27500A', '#C0DD97'),
-('IN_PROGRESS', '#FEF0DC', '#7A3E00', '#F9C47A');
-
-INSERT INTO experience_category (name, color_bg, color_text, color_border) VALUES
-('WORK', '#7a3e00', '#7a3e00', '#f9c47a'),
-('EDUCATION', '#e07800', '#e07800', '#f9c47a'),
-('PROJECT', '#fef0dc', '#fef0dc', '#f9c47a');
+INSERT INTO experience_category (name_es, name_en, color_bg, color_text, color_border) VALUES
+('TRABAJO', 'WORK', '#7a3e00', '#7a3e00', '#f9c47a'),
+('EDUCACIÓN', 'EDUCATION', '#e07800', '#e07800', '#f9c47a'),
+('PROYECTO', 'PROJECT', '#fef0dc', '#fef0dc', '#f9c47a');
 
 INSERT INTO organization (name) VALUES
 ('Imatia'),
@@ -24,15 +15,15 @@ INSERT INTO organization (name) VALUES
 ('IES Campo de San Alberto'),
 ('UNED');
 
-INSERT INTO technology_category (name, color_bg, color_text, color_border) VALUES
-('Backend', '#FEF0DC', '#7A3E00', '#F9C47A'),
-('Frontend', '#E6F1FB', '#185FA5', '#B5D4F4'),
-('Database', '#EAF3DE', '#27500A', '#C0DD97'),
-('Infrastructure', '#EEEDFE', '#3C3489', '#CECBF6'),
-('Testing', '#FCEBEB', '#791F1F', '#F7C1C1'),
-('Utilities', '#F1EFE8', '#444441', '#D3D1C7'),
-('Tools', '#FBEAF0', '#4B1528', '#F4C0D1'),
-('Styles', '#E1F5EE', '#085041', '#9FE1CB');
+INSERT INTO technology_category (name_es, name_en, color_bg, color_text, color_border) VALUES
+('Backend', 'Backend', '#FEF0DC', '#7A3E00', '#F9C47A'),
+('Frontend', 'Frontend', '#E6F1FB', '#185FA5', '#B5D4F4'),
+('Base de datos', 'Database', '#EAF3DE', '#27500A', '#C0DD97'),
+('Infraestructura', 'Infrastructure', '#EEEDFE', '#3C3489', '#CECBF6'),
+('Testing', 'Testing', '#FCEBEB', '#791F1F', '#F7C1C1'),
+('Utilidades', 'Utilities', '#F1EFE8', '#444441', '#D3D1C7'),
+('Herramientas', 'Tools', '#FBEAF0', '#4B1528', '#F4C0D1'),
+('Estilos', 'Styles', '#E1F5EE', '#085041', '#9FE1CB');
 
 INSERT INTO technology (name, url) VALUES
 ('ActiveMQ', 'https://activemq.apache.org'),
@@ -86,140 +77,140 @@ INSERT INTO technology (name, url) VALUES
 ('TypeScript', 'https://www.typescriptlang.org');
 
 INSERT INTO technology_technology_category (technology_id, category_id)
-SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'ActiveMQ' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Angular' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'ArgoCD' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'AWS' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Caffeine Cache' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'CSS' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'CSS' AND c.name = 'Styles'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'D3.js' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Dart' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Docker' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'PostgreSQL' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Figma' AND c.name = 'Tools'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Figma' AND c.name = 'Styles'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Firebase' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Flutter' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Flyway' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Git' AND c.name = 'Tools'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'GitHub Actions' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Gradle' AND c.name = 'Utilities'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Grafana' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'HTML' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Java' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'JasperReports' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Jenkins' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Jira' AND c.name = 'Tools'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'JPA' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'JUnit' AND c.name = 'Testing'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Keycloak' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Kotlin' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Liquibase' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Lombok' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'MapStruct' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Maven' AND c.name = 'Utilities'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Mockito' AND c.name = 'Testing'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'MongoDB' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'MySQL' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Node.js' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'npm' AND c.name = 'Utilities'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Ontimize Boot' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Ontimize Web' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'OpenAPI (Swagger)' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'PostgreSQL: Multi-Tenancy' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Postman' AND c.name = 'Tools'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'S3' AND c.name = 'Infrastructure'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'SCSS' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'SCSS' AND c.name = 'Styles'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Spring Boot' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Spring Security' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Springfox (Swagger)' AND c.name = 'Backend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'T-SQL' AND c.name = 'Database'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'TailwindCSS' AND c.name = 'Frontend'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'TailwindCSS' AND c.name = 'Styles'
-UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'TypeScript' AND c.name = 'Frontend';
+SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'ActiveMQ' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Angular' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'ArgoCD' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'AWS' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Caffeine Cache' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'CSS' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'CSS' AND c.name_en = 'Styles'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'D3.js' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Dart' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Docker' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'PostgreSQL' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Figma' AND c.name_en = 'Tools'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Figma' AND c.name_en = 'Styles'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Firebase' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Flutter' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Flyway' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Git' AND c.name_en = 'Tools'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'GitHub Actions' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Gradle' AND c.name_en = 'Utilities'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Grafana' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'HTML' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Java' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'JasperReports' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Jenkins' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Jira' AND c.name_en = 'Tools'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'JPA' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'JUnit' AND c.name_en = 'Testing'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Keycloak' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Kotlin' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Liquibase' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Lombok' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'MapStruct' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Maven' AND c.name_en = 'Utilities'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Mockito' AND c.name_en = 'Testing'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'MongoDB' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'MySQL' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Node.js' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'npm' AND c.name_en = 'Utilities'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Ontimize Boot' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Ontimize Web' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'OpenAPI (Swagger)' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'PostgreSQL: Multi-Tenancy' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Postman' AND c.name_en = 'Tools'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'S3' AND c.name_en = 'Infrastructure'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'SCSS' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'SCSS' AND c.name_en = 'Styles'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Spring Boot' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Spring Security' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'Springfox (Swagger)' AND c.name_en = 'Backend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'T-SQL' AND c.name_en = 'Database'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'TailwindCSS' AND c.name_en = 'Frontend'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'TailwindCSS' AND c.name_en = 'Styles'
+UNION ALL SELECT t.id, c.id FROM technology t, technology_category c WHERE t.name = 'TypeScript' AND c.name_en = 'Frontend';
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('FLUTTER DEVELOPER - PRACTICES',
+INSERT INTO experience (title_es, title_en, organization_id, status_id, category_id, description_es, description_en, start_date, end_date) VALUES
+('DESARROLLADOR FLUTTER - PRÁCTICAS', 'FLUTTER DEVELOPER - PRACTICES',
  (SELECT id FROM organization WHERE name = 'Imatia'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'EDUCATION'),
+ 'Desarrollo de una aplicación móvil para una startup que se comunica vía Bluetooth con un dispositivo. Hacia el final se inició desarrollo REST.',
  'Development of a mobile application for a startup that communicates via Bluetooth with a device. REST development started toward the end.',
- '2022-09-01', '2022-12-01');
+ '2022-09-01', '2022-12-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('FULL STACK DEVELOPER - 1',
+('DESARROLLADOR FULL STACK - 1', 'FULL STACK DEVELOPER - 1',
  (SELECT id FROM organization WHERE name = 'Imatia'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'WORK'),
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'WORK'),
+ 'Desarrollo de una aplicación móvil para una startup que se comunica vía Bluetooth con un dispositivo. Hacia el final se inició desarrollo REST.',
  'Development of a mobile application for a startup that communicates via Bluetooth with a device. REST development started toward the end.',
- '2023-01-01', '2023-05-01');
+ '2023-01-01', '2023-05-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('FULL STACK DEVELOPER - 2',
+('DESARROLLADOR FULL STACK - 2', 'FULL STACK DEVELOPER - 2',
  (SELECT id FROM organization WHERE name = 'Imatia'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'WORK'),
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'WORK'),
+ 'Desarrollo full stack de un proyecto del sector logístico con múltiples integraciones de transportistas.',
  'Full stack development for a logistics sector project with multiple carrier integrations.',
- '2023-05-01', '2025-08-01');
+ '2023-05-01', '2025-08-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('FULL STACK DEVELOPER - 3',
+('DESARROLLADOR FULL STACK - 3', 'FULL STACK DEVELOPER - 3',
  (SELECT id FROM organization WHERE name = 'Imatia'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'WORK'),
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'WORK'),
+ 'Desarrollo full stack de un proyecto interno de la empresa para la gestión de gastos de empleados.',
  'Full stack development for an internal company project for employee expense management.',
- '2025-08-01', '2026-02-01');
+ '2025-08-01', '2026-02-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('BOOTCAMP FULL STACK DEVELOPER',
+('BOOTCAMP DESARROLLADOR FULL STACK', 'BOOTCAMP FULL STACK DEVELOPER',
  (SELECT id FROM organization WHERE name = 'Cluster TIC Galicia y Xunta de Galicia'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'EDUCATION'),
+ 'Formación intensiva en desarrollo full stack.',
  'Intensive training in full stack development.',
- '2022-05-01', '2022-08-01');
+ '2022-05-01', '2022-08-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('CROSS-PLATFORM APPLICATION DEVELOPMENT',
+('DESARROLLO DE APLICACIONES MULTIPLATAFORMA', 'CROSS-PLATFORM APPLICATION DEVELOPMENT',
  (SELECT id FROM organization WHERE name = 'CPR Afundación'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'EDUCATION'),
+ 'Formación profesional en desarrollo de software.',
  'Professional training in software development.',
- '2020-09-01', '2022-05-01');
+ '2020-09-01', '2022-05-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('SCIENCE BACCALAUREATE',
+('BACHILLERATO CIENTÍFICO', 'SCIENCE BACCALAUREATE',
  (SELECT id FROM organization WHERE name = 'IES Campo de San Alberto'),
- (SELECT id FROM experience_status WHERE name = 'COMPLETED'),
- (SELECT id FROM experience_category WHERE name = 'EDUCATION'),
- NULL,
- '2018-09-01', '2020-05-01');
+ (SELECT id FROM experience_status WHERE name_en = 'COMPLETED'),
+ (SELECT id FROM experience_category WHERE name_en = 'EDUCATION'),
+ NULL, NULL,
+ '2018-09-01', '2020-05-01'),
 
-INSERT INTO experience (title, organization_id, status_id, category_id, description, start_date, end_date) VALUES
-('CARDIZA.DEV',
+('CARDIZA.DEV', 'CARDIZA.DEV',
  (SELECT id FROM organization WHERE name = 'CARDIZA.DEV'),
- (SELECT id FROM experience_status WHERE name = 'IN_PROGRESS'),
- (SELECT id FROM experience_category WHERE name = 'PROJECT'),
- 'Research and development of a full stack portfolio application',
+ (SELECT id FROM experience_status WHERE name_en = 'IN_PROGRESS'),
+ (SELECT id FROM experience_category WHERE name_en = 'PROJECT'),
+ 'Investigación y desarrollo de una aplicación de portfolio full stack.',
+ 'Research and development of a full stack portfolio application.',
  '2026-03-01', NULL);
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'FLUTTER DEVELOPER - PRACTICES' AND t.name IN (
+WHERE e.title_en = 'FLUTTER DEVELOPER - PRACTICES' AND t.name IN (
     'Dart', 'Flutter', 'Git', 'Keycloak', 'Firebase', 'PostgreSQL: Multi-Tenancy', 'Docker', 'Gradle'
 );
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'FULL STACK DEVELOPER - 1' AND t.name IN (
+WHERE e.title_en = 'FULL STACK DEVELOPER - 1' AND t.name IN (
     'Dart', 'Java', 'Flutter', 'Git', 'Keycloak', 'Firebase', 'PostgreSQL: Multi-Tenancy', 'Docker',
     'Spring Boot', 'Postman', 'Ontimize Boot', 'Gradle', 'Maven'
 );
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'FULL STACK DEVELOPER - 2' AND t.name IN (
+WHERE e.title_en = 'FULL STACK DEVELOPER - 2' AND t.name IN (
     'Java', 'HTML', 'SCSS', 'TypeScript', 'Spring Boot', 'JPA', 'MapStruct', 'MySQL', 'MongoDB', 'Angular',
     'Git', 'Postman', 'Docker', 'JUnit', 'Mockito', 'Springfox (Swagger)', 'Jira', 'Jenkins', 'ActiveMQ',
     'OpenAPI (Swagger)', 'Spring Security', 'Lombok', 'AWS', 'S3', 'ArgoCD', 'Grafana', 'Ontimize Web',
@@ -228,7 +219,7 @@ WHERE e.title = 'FULL STACK DEVELOPER - 2' AND t.name IN (
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'FULL STACK DEVELOPER - 3' AND t.name IN (
+WHERE e.title_en = 'FULL STACK DEVELOPER - 3' AND t.name IN (
     'Java', 'HTML', 'CSS', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Angular', 'Git', 'Postman', 'Docker',
     'JUnit', 'Mockito', 'Jira', 'Lombok', 'AWS', 'S3', 'ArgoCD', 'Grafana', 'Ontimize Web', 'Ontimize Boot',
     'JasperReports', 'Flyway', 'Maven', 'Node.js', 'npm', 'Figma'
@@ -236,20 +227,20 @@ WHERE e.title = 'FULL STACK DEVELOPER - 3' AND t.name IN (
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'BOOTCAMP FULL STACK DEVELOPER' AND t.name IN (
+WHERE e.title_en = 'BOOTCAMP FULL STACK DEVELOPER' AND t.name IN (
     'Java', 'HTML', 'SCSS', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Liquibase', 'Git', 'Jira',
     'Ontimize Web', 'Ontimize Boot', 'Angular', 'Maven', 'Node.js', 'npm'
 );
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'CROSS-PLATFORM APPLICATION DEVELOPMENT' AND t.name IN (
+WHERE e.title_en = 'CROSS-PLATFORM APPLICATION DEVELOPMENT' AND t.name IN (
     'Java', 'HTML', 'CSS', 'T-SQL', 'Git', 'Maven', 'Kotlin'
 );
 
 INSERT INTO experience_technology (experience_id, technology_id)
 SELECT e.id, t.id FROM experience e, technology t
-WHERE e.title = 'CARDIZA.DEV' AND t.name IN (
+WHERE e.title_en = 'CARDIZA.DEV' AND t.name IN (
     'Java', 'HTML', 'TypeScript', 'Spring Boot', 'JPA', 'MapStruct', 'PostgreSQL', 'Angular', 'TailwindCSS',
     'Git', 'Docker', 'JUnit', 'Mockito', 'GitHub Actions', 'OpenAPI (Swagger)', 'Lombok', 'Caffeine Cache',
     'Grafana', 'Flyway', 'Maven', 'Node.js', 'npm', 'Firebase'

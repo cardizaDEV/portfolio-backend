@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static com.cardiza.portfolio.config.ControllerNamings.ALL;
-import static com.cardiza.portfolio.config.ControllerNamings.TECHNOLOGY;
+import static com.cardiza.portfolio.config.ControllerNamings.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -41,26 +40,32 @@ class TechnologyControllerTest {
     @BeforeEach
     void setUp() {
         TechnologyCategoryDto backendCategory = new TechnologyCategoryDto(
-                1,
-                "Backend",
-                "#FEF0DC",
-                "#7A3E00",
-                "#F9C47A"
+                1, "Backend", "#FEF0DC", "#7A3E00", "#F9C47A"
         );
 
         techList = IntStream.rangeClosed(1, 15)
                 .mapToObj(i -> new TechnologyDto(
                         i,
                         "Technology " + i,
-                        "url" + i,
+                        "https://url" + i + ".com",
                         Set.of(backendCategory)
                 ))
                 .toList();
     }
 
     @Test
-    void getAllTechnologies() throws Exception {
-        Mockito.when(technologyService.getAllTechnologies()).thenReturn(techList);
+    void getAllTechnologies_returnsListWithCorrectSize() throws Exception {
+        Mockito.when(technologyService.getAllTechnologies(anyString())).thenReturn(techList);
+
+        mockMvc.perform(get(TECHNOLOGY + ALL)
+                        .header("Accept-Language", "es"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(techList.size()));
+    }
+
+    @Test
+    void getAllTechnologies_defaultsToEs() throws Exception {
+        Mockito.when(technologyService.getAllTechnologies("es")).thenReturn(techList);
 
         mockMvc.perform(get(TECHNOLOGY + ALL))
                 .andExpect(status().isOk())
@@ -68,15 +73,37 @@ class TechnologyControllerTest {
     }
 
     @Test
-    void getAllTechnologiesPaginated() throws Exception {
+    void getAllTechnologies_withEnLang() throws Exception {
+        Mockito.when(technologyService.getAllTechnologies("en")).thenReturn(techList);
+
+        mockMvc.perform(get(TECHNOLOGY + ALL)
+                        .header("Accept-Language", "en"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(techList.size()));
+    }
+
+    @Test
+    void getAllTechnologiesPaginated_returnsCorrectPageSize() throws Exception {
         List<TechnologyDto> pageContent = techList.subList(0, 10);
         Page<TechnologyDto> page = new PageImpl<>(pageContent, PageRequest.of(0, 10), techList.size());
 
-        Mockito.when(technologyService.getAllTechnologiesPaginated(anyInt(), anyInt(), anyString()))
+        Mockito.when(technologyService.getAllTechnologiesPaginated(anyInt(), anyInt(), anyString(), anyString()))
                 .thenReturn(page);
 
-        mockMvc.perform(get(TECHNOLOGY))
+        mockMvc.perform(get(TECHNOLOGY)
+                        .header("Accept-Language", "es"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(pageContent.size()));
+                .andExpect(jsonPath("$.content.length()").value(pageContent.size()))
+                .andExpect(jsonPath("$.totalElements").value(techList.size()))
+                .andExpect(jsonPath("$.totalPages").value(2));
+    }
+
+    @Test
+    void getAllCategories_returnsOk() throws Exception {
+        Mockito.when(technologyService.getAllCategories(anyString())).thenReturn(List.of());
+
+        mockMvc.perform(get(TECHNOLOGY + CATEGORIES)
+                        .header("Accept-Language", "es"))
+                .andExpect(status().isOk());
     }
 }

@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static com.cardiza.portfolio.config.ControllerNamings.ALL;
-import static com.cardiza.portfolio.config.ControllerNamings.EXPERIENCE;
+import static com.cardiza.portfolio.config.ControllerNamings.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,14 +44,14 @@ class ExperienceControllerTest {
                         i,
                         "Experience " + i,
                         new OrganizationDto(i % 5 + 1, "Organization " + (i % 5 + 1), null),
-                        new ExperienceStatusDto(i % 2 + 1, i % 2 == 0 ? "COMPLETED" : "IN_PROGRESS", "#EAF3DE", "#27500A", "#C0DD97"),
-                        new ExperienceCategoryDto(i % 3 + 1, i % 3 == 0 ? "WORK" : i % 3 == 1 ? "EDUCATION" : "PROJECT", "#FCEBEB", "#791F1F", "#F7C1C1"),
-                        "Description for experience " + i,
+                        new ExperienceStatusDto(i % 2 + 1, i % 2 == 0 ? "COMPLETADO" : "EN PROGRESO", "#EAF3DE", "#27500A", "#C0DD97"),
+                        new ExperienceCategoryDto(i % 3 + 1, i % 3 == 0 ? "TRABAJO" : i % 3 == 1 ? "EDUCACIÓN" : "PROYECTO", "#FCEBEB", "#791F1F", "#F7C1C1"),
+                        "Descripción de la experiencia " + i,
                         LocalDate.now().minusMonths(i),
                         LocalDate.now().minusMonths(i - 1),
                         Set.of(
                                 new TechnologyDto(i, "Technology " + i, null, Set.of(
-                                        new TechnologyCategoryDto(i % 3 + 1, "Category " + (i % 3 + 1), "#FEF0DC", "#7A3E00", "#F9C47A")
+                                        new TechnologyCategoryDto(i % 3 + 1, "Categoría " + (i % 3 + 1), "#FEF0DC", "#7A3E00", "#F9C47A")
                                 ))
                         )
                 ))
@@ -60,8 +59,18 @@ class ExperienceControllerTest {
     }
 
     @Test
-    void getAllExperiences() throws Exception {
-        Mockito.when(experienceService.getAllExperiences()).thenReturn(experienceList);
+    void getAllExperiences_returnsListWithCorrectSize() throws Exception {
+        Mockito.when(experienceService.getAllExperiences(anyString())).thenReturn(experienceList);
+
+        mockMvc.perform(get(EXPERIENCE + ALL)
+                        .header("Accept-Language", "es"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(experienceList.size()));
+    }
+
+    @Test
+    void getAllExperiences_defaultsToEs() throws Exception {
+        Mockito.when(experienceService.getAllExperiences("es")).thenReturn(experienceList);
 
         mockMvc.perform(get(EXPERIENCE + ALL))
                 .andExpect(status().isOk())
@@ -69,15 +78,46 @@ class ExperienceControllerTest {
     }
 
     @Test
-    void getAllExperiencesPaginated() throws Exception {
+    void getAllExperiences_withEnLang() throws Exception {
+        Mockito.when(experienceService.getAllExperiences("en")).thenReturn(experienceList);
+
+        mockMvc.perform(get(EXPERIENCE + ALL)
+                        .header("Accept-Language", "en"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(experienceList.size()));
+    }
+
+    @Test
+    void getAllExperiencesPaginated_returnsCorrectPageSize() throws Exception {
         List<ExperienceDto> pageContent = experienceList.subList(0, 10);
         Page<ExperienceDto> page = new PageImpl<>(pageContent, PageRequest.of(0, 10), experienceList.size());
 
-        Mockito.when(experienceService.getAllExperiencesPaginated(anyInt(), anyInt(), anyString()))
+        Mockito.when(experienceService.getAllExperiencesPaginated(anyInt(), anyInt(), anyString(), anyString()))
                 .thenReturn(page);
 
-        mockMvc.perform(get(EXPERIENCE))
+        mockMvc.perform(get(EXPERIENCE)
+                        .header("Accept-Language", "es"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(pageContent.size()));
+                .andExpect(jsonPath("$.content.length()").value(pageContent.size()))
+                .andExpect(jsonPath("$.totalElements").value(experienceList.size()))
+                .andExpect(jsonPath("$.totalPages").value(2));
+    }
+
+    @Test
+    void getAllCategories_returnsOk() throws Exception {
+        Mockito.when(experienceService.getAllCategories(anyString())).thenReturn(List.of());
+
+        mockMvc.perform(get(EXPERIENCE + CATEGORIES)
+                        .header("Accept-Language", "es"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getAllStatuses_returnsOk() throws Exception {
+        Mockito.when(experienceService.getAllStatuses(anyString())).thenReturn(List.of());
+
+        mockMvc.perform(get(EXPERIENCE + STATUSES)
+                        .header("Accept-Language", "es"))
+                .andExpect(status().isOk());
     }
 }
