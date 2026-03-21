@@ -10,7 +10,6 @@ import java.util.Set;
 @Mapper(componentModel = "spring")
 public interface GenericMapper {
 
-    @Mapping(target = "name", ignore = true)
     TechnologyDto technologyToDto(Technology technology);
 
     @Mapping(target = "name", ignore = true)
@@ -39,6 +38,11 @@ public interface GenericMapper {
         ExperienceDto dto = experienceToDto(experience, technologies);
         dto.setTitle("es".equals(lang) ? experience.getTitleEs() : experience.getTitleEn());
         dto.setDescription("es".equals(lang) ? experience.getDescriptionEs() : experience.getDescriptionEn());
+        dto.getStatus().setName("es".equals(lang) ? experience.getStatus().getNameEs() : experience.getStatus().getNameEn());
+        dto.getCategory().setName("es".equals(lang) ? experience.getCategory().getNameEs() : experience.getCategory().getNameEn());
+        dto.setTechnologies(technologies.stream()
+                .map(t -> technologyToDto(t, lang))
+                .collect(java.util.stream.Collectors.toSet()));
         return dto;
     }
 
