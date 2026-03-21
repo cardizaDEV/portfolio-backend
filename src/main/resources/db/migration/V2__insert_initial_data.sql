@@ -12,9 +12,9 @@ INSERT INTO experience_status (name, color_bg, color_text, color_border) VALUES
 ('IN_PROGRESS', '#FEF0DC', '#7A3E00', '#F9C47A');
 
 INSERT INTO experience_category (name, color_bg, color_text, color_border) VALUES
-('WORK', '#FCEBEB', '#791F1F', '#F7C1C1'),
-('EDUCATION', '#E6F1FB', '#185FA5', '#B5D4F4'),
-('PROJECT', '#EAF3DE', '#27500A', '#C0DD97');
+('WORK', '#7a3e00', '#7a3e00', '#f9c47a'),
+('EDUCATION', '#e07800', '#e07800', '#f9c47a'),
+('PROJECT', '#fef0dc', '#fef0dc', '#f9c47a');
 
 INSERT INTO organization (name) VALUES
 ('Imatia'),

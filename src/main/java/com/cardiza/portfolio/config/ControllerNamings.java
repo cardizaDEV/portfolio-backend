@@ -9,4 +9,5 @@ public class ControllerNamings {
     public static final String CATEGORIES = "/categories";
     public static final String STATUSES = "/statuses";
     public static final String ALL = "/all";
+    public static final String CONTACT = "/contact";
 }

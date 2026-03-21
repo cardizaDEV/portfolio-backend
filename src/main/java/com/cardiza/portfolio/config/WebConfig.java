@@ -13,9 +13,15 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/contact")
+                        .allowedOrigins("*")
+                        .allowedMethods("POST", "OPTIONS")
+                        .allowedHeaders("*");
+
                 registry.addMapping("/**")
                         .allowedOrigins("*")
-                        .allowedMethods("GET");
+                        .allowedMethods("GET", "OPTIONS")
+                        .allowedHeaders("*");
             }
         };
     }
