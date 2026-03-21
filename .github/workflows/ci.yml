@@ -1,4 +1,4 @@
-name: CI - Maven Build
+name: Backend CI
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
       MAIL_TO: ${{ secrets.MAIL_TO }}
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Set up JDK 21
