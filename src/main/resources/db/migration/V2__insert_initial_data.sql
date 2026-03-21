@@ -189,7 +189,7 @@ INSERT INTO experience (title_es, title_en, organization_id, status_id, category
 
 ('CARDIZA.DEV', 'CARDIZA.DEV',
  (SELECT id FROM organization WHERE name = 'CARDIZA.DEV'),
- (SELECT id FROM experience_status WHERE name_en = 'IN_PROGRESS'),
+ (SELECT id FROM experience_status WHERE name_en = 'IN PROGRESS'),
  (SELECT id FROM experience_category WHERE name_en = 'PROJECT'),
  'Investigación y desarrollo de una aplicación de portfolio full stack.',
  'Research and development of a full stack portfolio application.',
