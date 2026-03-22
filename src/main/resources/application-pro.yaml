@@ -2,11 +2,11 @@ spring:
   datasource:
     url: ${DB_URL}
     username: ${DB_USER}
-    password: ${DB_PASSWORD
+    password: ${DB_PASSWORD}
   mail:
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
 
 contact:
   mail:
-    to: ${MAIL_TO}}
+    to: ${MAIL_TO}
