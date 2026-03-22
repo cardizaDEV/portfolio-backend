@@ -3,3 +3,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/portfolio
     username: 1234
     password: 1234
+  mail:
+    username:
+    password:
+
+contact:
+  mail:
+    to:
